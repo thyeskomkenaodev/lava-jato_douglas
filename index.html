@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Douglas Car - Lava Jato Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #d32f2f;
+            --dark-red: #b71c1c;
+            --light-red: #ff6659;
+            --primary-blue: #1976d2;
+            --dark-blue: #0d47a1;
+            --light-blue: #63a4ff;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+        }
+        
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+        
+        .services {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-red);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .booking {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .gallery {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(211, 47, 47, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay i {
+            color: var(--white);
+            font-size: 2rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), #0a2e6b);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-red);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-bottom p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero-content {
+                text-align: center;
+                padding: 0 20px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="imagemrefeita.png" alt="Douglas Car Logo">
+                    <div class="logo-text">
+                        <h1>Douglas Car</h1>
+                        <p>Lava Jato Premium</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#agendamento">Agendamento</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Seu carro merece o melhor cuidado</h2>
+                <p>No Douglas Car oferecemos serviços premium de lavagem e detalhamento automotivo, deixando seu veículo com aparência de novo.</p>
+                <a href="#agendamento" class="btn">Agende Agora</a>
+                <a href="#galeria" class="btn btn-outline">Confira Nossos Trabalhos</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lavagem Completa">
+                    </div>
+                    <div class="service-content">
+                        <h3>Lavagem simples</h3>
+                        <p>Lavagem externa e rodas.</p>
+                        <p class="price">A partir de R$ 40,00</p>
+                        <a href="#agendamento" class="btn">Agendar</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="biz.jpg" alt="Lavagem de Moto">
+                    </div>
+                    <div class="service-content">
+                        <h3>Lavagem de Moto</h3>
+                        <p>Serviço especializado para motocicletas, com cuidado em cada detalhe.</p>
+                        <p class="price">A partir de R$ 40,00</p>
+                        <a href="#agendamento" class="btn">Agendar</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Detalhamento Completo">
+                    </div>
+                    <div class="service-content">
+                        <h3>Lavagem completa</h3>
+                        <p>Renove seu veículo com nosso serviço de lavagem completa.</p>
+                        <p class="price">A partir de R$ 60,00</p>
+                        <a href="#agendamento" class="btn">Agendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking" id="agendamento">
+        <div class="container">
+            <div class="section-title">
+                <h2>Agendamento Online</h2>
+            </div>
+            <div class="booking-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-model">Modelo do Veículo</label>
+                        <input type="text" id="vehicle-model" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Serviço Desejado</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Selecione um serviço</option>
+                            <option value="lavagem-completa">Lavagem Completa</option>
+                            <option value="lavagem-moto">Lavagem de Moto</option>
+                            <option value="detalhamento">Detalhamento Completo</option>
+                            <option value="polimento">Polimento</option>
+                            <option value="higienizacao">Higienização Interna</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Data</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Horário</label>
+                        <input type="time" id="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Observações</label>
+                        <textarea id="message" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-block">Confirmar Agendamento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="galeria">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Trabalhos</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="uno.jpg" alt="Carro lavado">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="saveiro.jpg" alt="Interior limpo">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="gol.jpg" alt="Detalhamento">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="moto.jpg" alt="Moto lavada">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn">Ver Mais Trabalhos</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre Nós</h3>
+                    <p>O Douglas Car é um lava-jato premium que oferece serviços de alta qualidade para deixar seu veículo impecável.</p>
+                    <p>Atendemos carros e motos com excelência e atenção aos detalhes.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horário de Funcionamento</h3>
+                    <p>Segunda a Sexta: 8h às 18h</p>
+                    <p>Sábado: 8h às 18h</p>
+                    <p>Domingo: Fechado</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Avenida São José, 187 - Centro</p>
+                    <p><i class="fas fa-phone"></i> (67) 99603-3389</p>
+                    <p><i class="fas fa-envelope">XXX-XXXX</p>
+                    <p><i class="fas fa-envelope"></i> contato@douglascar.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Thyesko Menão - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.booking-form form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // --- IMPORTANTE ---
+            // Substitua '5511999999999' pelo seu número de WhatsApp.
+            // Inclua o código do país (55 para o Brasil) e o DDD.
+            const phoneNumber = '5567996033899'; 
+
+            // Pega os valores dos campos do formulário
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const vehicleModel = document.getElementById('vehicle-model').value;
+            const serviceSelect = document.getElementById('service');
+            const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+            const dateValue = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const message = document.getElementById('message').value;
+
+            // Formata a data de AAAA-MM-DD para DD/MM/AAAA para melhor visualização
+            const [year, month, day] = dateValue.split('-');
+            const formattedDate = `${day}/${month}/${year}`;
+
+            // Monta a mensagem que será enviada para o WhatsApp
+            const whatsappMessage = `*Novo Agendamento - Douglas Car*\n\nOlá! Gostaria de fazer um agendamento:\n\n*Cliente:* ${name}\n*Telefone:* ${phone}\n*Veículo:* ${vehicleModel}\n*Serviço:* ${service}\n*Data:* ${formattedDate}\n*Horário:* ${time}\n\n*Observações:*\n${message}`;
+
+            // Codifica a mensagem para ser usada na URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Redireciona o usuário para o WhatsApp em uma nova aba
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
